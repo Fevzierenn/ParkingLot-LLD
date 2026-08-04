@@ -1,0 +1,25 @@
+package entities;
+
+import enums.PaymentMethod;
+import enums.PaymentStatus;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+public class Payment {
+
+    private long id;
+    private PaymentMethod paymentMethod;
+    private PaymentStatus paymentStatus;
+    private BigDecimal amount;
+    private LocalDateTime createdAt;
+    private LocalDateTime completedAt;
+    private String transactional;
+}
