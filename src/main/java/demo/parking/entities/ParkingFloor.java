@@ -1,4 +1,4 @@
-package entities;
+package demo.parking.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

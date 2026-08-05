@@ -1,4 +1,4 @@
-package enums;
+package demo.parking.enums;
 
 public enum GateStatus {
     OPEN,

@@ -1,7 +1,7 @@
-package entities;
+package demo.parking.entities;
 
-import enums.PaymentMethod;
-import enums.PaymentStatus;
+import demo.parking.enums.PaymentMethod;
+import demo.parking.enums.PaymentStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

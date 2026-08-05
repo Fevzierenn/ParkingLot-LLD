@@ -1,8 +1,8 @@
-package entities;
+package demo.parking.entities;
 
 
-import enums.PricingPolicy;
-import enums.TicketStatus;
+import demo.parking.enums.PricingPolicy;
+import demo.parking.enums.TicketStatus;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

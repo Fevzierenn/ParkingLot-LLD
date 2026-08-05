@@ -1,6 +1,6 @@
-package entities;
+package demo.parking.entities;
 
-import enums.GateStatus;
+import demo.parking.enums.GateStatus;
 
 import java.util.UUID;
 

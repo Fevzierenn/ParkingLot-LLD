@@ -1,6 +1,6 @@
-package entities;
+package demo.parking.entities;
 
-import enums.SpotStatus;
+import demo.parking.enums.SpotStatus;
 
 import java.time.Clock;
 import java.time.Duration;

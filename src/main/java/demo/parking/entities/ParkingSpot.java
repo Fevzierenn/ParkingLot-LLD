@@ -1,7 +1,9 @@
-package entities;
+package demo.parking.entities;
 
-import enums.SpotStatus;
-import enums.VehicleType;
+import demo.parking.entities.ParkingFloor;
+
+import demo.parking.enums.SpotStatus;
+import demo.parking.enums.VehicleType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
