@@ -1,11 +1,8 @@
 package demo.parking.enums;
 
 public enum SpotStatus {
-
-    OCCUPIED,
     AVAILABLE,
     RESERVED,
-    MAINTENANCE,
-    DISCURRENT
-
+    OCCUPIED,
+    OUT_OF_SERVICE
 }

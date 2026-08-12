@@ -6,13 +6,13 @@ import lombok.Getter;
 public enum VehicleType {
     CAR(1),
     MOTORCYCLE(0.5),
-    TRUCK(2.5),
-    VAN(5);
+    SMALL_TRUCK(5),
+    VAN(2.5);
 
-    private final double code;
+    private final double priceMultiplier;
 
-    VehicleType(double code){
-        this.code = code;
+        VehicleType(double priceMultiplier) {
+        this.priceMultiplier = priceMultiplier;
     }
 
 }

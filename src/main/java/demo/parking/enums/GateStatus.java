@@ -3,6 +3,6 @@ package demo.parking.enums;
 public enum GateStatus {
     OPEN,
     CLOSED,
-    MAINTENANCE,
-    DISCURRENT
+    OUT_OF_SERVICE
+
 }
