@@ -3,6 +3,7 @@ package demo.parking.entities;
 
 import demo.parking.enums.PricingPolicy;
 import demo.parking.enums.TicketStatus;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,18 +15,41 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
+@Entity
+
 public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
+
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
+
+    @ManyToOne
+    @JoinColumn
     private Gate entryGate;
+
+    @ManyToOne
+    @JoinColumn
     private Gate exitGate;
-    private ParkingSpot spot;
+
+    @ManyToOne
+    private ParkingSpot assignedSpot;
+
+    @ManyToOne
+    private ParkingSpot actualSpot;
+    @Enumerated(EnumType.STRING)
     private TicketStatus status;
+
+    @ManyToOne
+    @JoinColumn
     private Vehicle vehicle;
+
+    @Enumerated(EnumType.STRING)
     private PricingPolicy pricingPolicy;
     private String pricingDescription;
+    private boolean penaltyApplied;
+    private String penaltyReason;
 
 
 
