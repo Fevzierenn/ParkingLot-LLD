@@ -1,32 +1,44 @@
 package demo.parking.entities;
 
+import demo.parking.enums.DeviceStatus;
 import demo.parking.enums.SpotStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
+
+import java.time.Clock;
 import java.time.Duration;
-
-
+import java.util.UUID;
+@Entity
+@Table(name = "device")
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "device")
 public class SpotDevice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long uuid;
 
-    @OneToOne(mappedBy = "device")
+    @OneToOne
     private ParkingSpot spot;
     @Enumerated(EnumType.STRING)
-    private SpotStatus spotStatus;
+    private DeviceStatus deviceStatus;
 
     private String message;
     private String vehiclePlate;
-    @Value("${spot.allocation.time}")
     private  Duration maxWaitingTime;
+
+    @Override
+    public String toString() {
+        return "SpotDevice{" +
+                "uuid=" + uuid +
+                ", spot number=" + spot.getSpotNumber() +
+                ", deviceStatus=" + deviceStatus +
+                ", message='" + message + '\'' +
+                ", vehiclePlate='" + vehiclePlate + '\'' +
+                ", maxWaitingTime=" + maxWaitingTime +
+                '}';
+    }
 }

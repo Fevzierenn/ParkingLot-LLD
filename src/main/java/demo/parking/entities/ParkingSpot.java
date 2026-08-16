@@ -32,7 +32,21 @@ public class ParkingSpot {
     private VehicleType allowedType;
     @Enumerated(EnumType.STRING)
     private SpotStatus status;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn
+
+    @OneToOne(cascade = CascadeType.ALL)   // or CascadeType.ALL
+    @JoinColumn(name = "device_id")
     private SpotDevice device;
+
+    @Override
+    public String toString() {
+        return "ParkingSpot{" +
+                "uuid=" + uuid +
+                ", floor=" + floor.getFloorNumber() +
+                ", nearness=" + nearness +
+                ", spotNumber='" + spotNumber + '\'' +
+                ", allowedType=" + allowedType +
+                ", status=" + status +
+                ", device=" + device+
+                '}';
+    }
 }

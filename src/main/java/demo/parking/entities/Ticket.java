@@ -4,10 +4,9 @@ package demo.parking.entities;
 import demo.parking.enums.PricingPolicy;
 import demo.parking.enums.TicketStatus;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,13 +15,17 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
+@Builder
 
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
+    @NotNull
     private LocalDateTime entryTime;
+
     private LocalDateTime exitTime;
 
     @ManyToOne
@@ -51,6 +54,22 @@ public class Ticket {
     private boolean penaltyApplied;
     private String penaltyReason;
 
-
-
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "uuid=" + uuid +
+                ", entryTime=" + entryTime +
+                ", exitTime=" + exitTime +
+                ", entryGate=" + entryGate +
+                ", exitGate=" + exitGate +
+                ", assignedSpot=" + assignedSpot +
+                ", actualSpot=" + actualSpot +
+                ", status=" + status +
+                ", vehicle=" + vehicle +
+                ", pricingPolicy=" + pricingPolicy +
+                ", pricingDescription='" + pricingDescription + '\'' +
+                ", penaltyApplied=" + penaltyApplied +
+                ", penaltyReason='" + penaltyReason + '\'' +
+                '}';
+    }
 }

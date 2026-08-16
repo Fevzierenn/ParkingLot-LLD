@@ -9,17 +9,16 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
 public class Gate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Enumerated(EnumType.STRING)
-    private GateType type;
-    @Enumerated(EnumType.STRING)
     private GateStatus status;
-
+    @Enumerated(EnumType.STRING)
+    private GateType type;
 }
