@@ -3,7 +3,6 @@ package demo.parking.entities;
 import demo.parking.enums.PaymentMethod;
 import demo.parking.enums.PaymentStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,18 +22,10 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-    @ManyToOne
-    @JoinColumn(name = "ticket_uuid")
-    private Ticket ticket;
-    @Enumerated(EnumType.STRING)
-    @NotNull
     private PaymentMethod paymentMethod;
-    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
     private BigDecimal amount;
     private LocalDateTime createdAt;
     private LocalDateTime completedAt;
-    private String transactionId;
-    private String failureReason;
+    private String transactional;
 }

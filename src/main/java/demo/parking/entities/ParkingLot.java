@@ -26,7 +26,8 @@ public class ParkingLot{
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "parkingLot",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parkinglot_Id")
     private List<ParkingFloor> floors;
 
 }

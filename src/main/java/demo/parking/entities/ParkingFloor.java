@@ -22,9 +22,9 @@ public class ParkingFloor {
     private long uuid;
     private int floorNumber;
 
-    @ManyToOne
-    @JoinColumn
-    private ParkingLot parkingLot;
+//    @ManyToOne
+//    @JoinColumn
+//    private ParkingLot parkingLot;
 
     @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL)
     private List<ParkingSpot> spots;
