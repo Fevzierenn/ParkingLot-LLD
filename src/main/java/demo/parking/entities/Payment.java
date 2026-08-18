@@ -22,7 +22,9 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
     private BigDecimal amount;
     private LocalDateTime createdAt;

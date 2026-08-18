@@ -20,5 +20,4 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    // getters
 }

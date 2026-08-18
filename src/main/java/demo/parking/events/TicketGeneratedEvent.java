@@ -1,11 +1,8 @@
 package demo.parking.events;
 
-import demo.parking.entities.SpotDevice;
 import lombok.*;
 import org.springframework.context.ApplicationEvent;
-import org.springframework.stereotype.Component;
 
-import java.time.Clock;
 import java.util.UUID;
 
 @Getter

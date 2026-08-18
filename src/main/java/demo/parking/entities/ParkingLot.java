@@ -21,7 +21,7 @@ public class ParkingLot{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uuid;
+    private long id;
     private String name;
     @Embedded
     private Address address;

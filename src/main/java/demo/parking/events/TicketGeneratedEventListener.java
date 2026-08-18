@@ -1,6 +1,5 @@
 package demo.parking.events;
 
-import demo.parking.enums.DeviceStatus;
 import demo.parking.services.SpotDeviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

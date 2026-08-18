@@ -19,7 +19,7 @@ public class ParkingFloor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uuid;
+    private long id;
     private int floorNumber;
 
 //    @ManyToOne
