@@ -26,6 +26,8 @@ public class Ticket {
     @NotNull
     private LocalDateTime entryTime;
 
+    private LocalDateTime actualParkedTime;
+
     private LocalDateTime exitTime;
 
     @ManyToOne

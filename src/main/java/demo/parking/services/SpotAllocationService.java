@@ -44,16 +44,16 @@ public class SpotAllocationService {
     }
 
     @Transactional
-    public void releaseIfAvailable(ParkingSpot spot) {
-        if (spot.getStatus() == SpotStatus.OCCUPIED) {
+    public void releaseIfAvailable(ParkingSpot assignedSpot) {
+        if (assignedSpot.getStatus() == SpotStatus.OCCUPIED) {
             logger.warn(
                     "Spot {} is occupied. Cannot release physical spot.",
-                    spot.getSpotNumber()
+                    assignedSpot.getSpotNumber()
             );
             return;
         }
-        spot.setStatus(SpotStatus.AVAILABLE);
-        logger.info("Spot {} released. Back to AVAILABLE Mode.", spot.getSpotNumber());
-        spotDeviceService.resetDevice(spot.getDevice());
+        assignedSpot.setStatus(SpotStatus.AVAILABLE);
+        logger.info("Spot {} released. Back to AVAILABLE Mode.", assignedSpot.getSpotNumber());
+        spotDeviceService.resetDevice(assignedSpot.getDevice());
     }
 }
