@@ -1,16 +1,11 @@
 package demo.parking.entities;
 
-import demo.parking.entities.ParkingFloor;
-
 import demo.parking.enums.SpotStatus;
 import demo.parking.enums.VehicleType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
-
 
 @Getter
 @Setter
@@ -20,7 +15,7 @@ public class ParkingSpot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uuid;
+    private long id;
 
     @ManyToOne
     @JoinColumn
@@ -40,7 +35,7 @@ public class ParkingSpot {
     @Override
     public String toString() {
         return "ParkingSpot{" +
-                "uuid=" + uuid +
+                "uuid=" + id +
                 ", floor=" + floor.getFloorNumber() +
                 ", nearness=" + nearness +
                 ", spotNumber='" + spotNumber + '\'' +
