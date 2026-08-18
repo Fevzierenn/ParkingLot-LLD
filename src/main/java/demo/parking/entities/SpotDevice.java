@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.time.Clock;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.UUID;
 @Entity
 @Table(name = "device")
@@ -19,26 +20,33 @@ public class SpotDevice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long uuid;
+    private long id;
 
-    @OneToOne
+    @OneToOne(mappedBy = "device")
     private ParkingSpot spot;
+
     @Enumerated(EnumType.STRING)
     private DeviceStatus deviceStatus;
 
+    @Version
+    private Long version;
+
     private String message;
     private String vehiclePlate;
-    private  Duration maxWaitingTime;
+
+    private LocalDateTime waitingStartedAt;
+    private LocalDateTime waitingDeadline;
 
     @Override
     public String toString() {
         return "SpotDevice{" +
-                "uuid=" + uuid +
+                "uuid=" + id +
                 ", spot number=" + spot.getSpotNumber() +
                 ", deviceStatus=" + deviceStatus +
                 ", message='" + message + '\'' +
                 ", vehiclePlate='" + vehiclePlate + '\'' +
-                ", maxWaitingTime=" + maxWaitingTime +
+                ", waitingStart=" + waitingStartedAt +
+                ", waitingDeadline=" + waitingDeadline +
                 '}';
     }
 }
