@@ -45,7 +45,7 @@ public class Ticket {
     private TicketStatus status;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(referencedColumnName = "plateNo")
     private Vehicle vehicle;
 
     @Enumerated(EnumType.STRING)
