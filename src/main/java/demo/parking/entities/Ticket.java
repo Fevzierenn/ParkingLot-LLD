@@ -48,6 +48,9 @@ public class Ticket {
     @JoinColumn(referencedColumnName = "plateNo")
     private Vehicle vehicle;
 
+    @Version
+    private Long version;
+
     @Enumerated(EnumType.STRING)
     private PricingPolicy pricingPolicy;
     private String pricingDescription;
