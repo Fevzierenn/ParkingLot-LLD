@@ -103,14 +103,15 @@ public class ParkingLotDataInitializer {
     }
 
     private void seedGates(GateRepository gateRepository) {
-        gateRepository.save(createGate(GateType.ENTRY));
-        gateRepository.save(createGate(GateType.ENTRY));
-        gateRepository.save(createGate(GateType.EXIT));
-        gateRepository.save(createGate(GateType.EXIT));
+        gateRepository.save(createGate(GateType.ENTRY, "ENTRY-1"));
+        gateRepository.save(createGate(GateType.ENTRY, "ENTRY-2"));
+        gateRepository.save(createGate(GateType.EXIT, "EXIT-1"));
+        gateRepository.save(createGate(GateType.EXIT, "EXIT-2"));
     }
 
-    private Gate createGate(GateType gateType) {
+    private Gate createGate(GateType gateType, String name) {
         Gate gate = new Gate();
+        gate.setName(name);
         gate.setType(gateType);
         gate.setStatus(GateStatus.CLOSED);
         return gate;
