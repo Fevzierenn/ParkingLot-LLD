@@ -42,7 +42,7 @@ public Ticket parkVehicle(
     Vehicle vehicle =
             vehicleService.findOrCreate(plateNo, vehicleType);
 
-    Gate entryGate = gateService.findGateById(gateId);
+    Gate entryGate = gateService.findEntryGateByIdForUpdate(gateId);
     return parkVehicle(vehicle, entryGate);
 }
 
@@ -50,6 +50,7 @@ public Ticket parkVehicle(
     public Ticket parkVehicle(@NotNull Vehicle vehicle, Gate entryGate) {
         ParkingSpot spot = reserveNearestSpot(vehicle.getType());
         Ticket ticket = ticketService.generateTicket(vehicle, spot, entryGate);
+        gateService.openForEntry(entryGate);   // opens last: a failed allocation leaves the barrier down
         publishTicketGeneratedEvent(ticket, spot);
         return ticket;
     }
