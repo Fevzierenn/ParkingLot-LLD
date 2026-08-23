@@ -15,4 +15,5 @@ public interface TicketRepository extends JpaRepository<Ticket, UUID> {
     List<Ticket> findTicketsByVehicle_PlateNoAndStatus(String plateNo, TicketStatus status);
 
     boolean existsByVehicle_UuidAndStatusNot(UUID uuid, TicketStatus ticketStatus);
+
 }

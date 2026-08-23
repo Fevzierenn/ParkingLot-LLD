@@ -58,10 +58,10 @@ public class TicketService {
         );
     }
 
-    public Ticket findTicketByVehiclePlateNo(String plateNo){
-      List<Ticket> tickets = ticketRepository.findTicketsByVehicle_PlateNoAndStatus(plateNo,TicketStatus.ACTIVE);
-      if(tickets.isEmpty()) throw new TicketNotFoundException("Ticket could not be found for plateNo: " + plateNo);
-      if(tickets.size() > 1) throw new RuntimeException("Too Many ACTIVE Tickets in the SYSTEM for plate:" + plateNo);
+    public Ticket findTicketByVehiclePlateNo(String plateNo, TicketStatus ticketStatus){
+      List<Ticket> tickets = ticketRepository.findTicketsByVehicle_PlateNoAndStatus(plateNo, ticketStatus);
+      if(tickets.isEmpty()) throw new TicketNotFoundException("Ticket could not be found for plateNo: " + plateNo+ " and status: " + ticketStatus);
+      if(tickets.size() > 1) throw new RuntimeException("Too Many "+ ticketStatus+" Tickets in the SYSTEM for plate:" + plateNo);
       Ticket activeTicket = tickets.getFirst();
       logger.info("Vehicle ticket found: " + activeTicket);
       return activeTicket;
@@ -74,5 +74,13 @@ public class TicketService {
         ticket.setVehicle(vehicle);
         ticket.setActualSpot(actualSpot);
         ticket.setStatus(TicketStatus.PARKED);
+    }
+
+    public void markAsAvailable(String vehiclePlate) {
+        Ticket parkedTicket = findTicketByVehiclePlateNo(vehiclePlate, TicketStatus.PARKED);
+        logger.info("Parked ticket found: " + parkedTicket+" and status: " + parkedTicket.getStatus());
+        parkedTicket.setStatus(TicketStatus.ACTIVE);
+        logger.info("Parked ticket status is currently: "+ parkedTicket.getStatus() +" and it is inside parking lot without spot");
+
     }
 }

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/spot-devices")
 public class SpotDeviceController {
+    private final SpotDeviceService spotDeviceService;
     Logger logger = LoggerFactory.getLogger(SpotDeviceController.class);
     private final ParkingLotService parkingLotService;
 
-    public SpotDeviceController( ParkingLotService parkingLotService) {
+    public SpotDeviceController(ParkingLotService parkingLotService, SpotDeviceService spotDeviceService) {
         this.parkingLotService = parkingLotService;
+        this.spotDeviceService = spotDeviceService;
     }
 
 
@@ -30,5 +32,12 @@ public class SpotDeviceController {
         SpotDeviceResponse device = parkingLotService.vehicleReachTheSpot(plateNo, deviceId);
         logger.info("VEHICLE CONTROLLER RETURN: Device: "+ device);
         return ResponseEntity.status(HttpStatus.FOUND).body(device);
+    }
+
+    @PostMapping("/{deviceId}/vehicle-exit")
+    public ResponseEntity vehicleOutOfSpot(@PathVariable Long deviceId){
+        logger.info("VEHICLE CONTROLLER: Vehicle out of spot: {}", deviceId);
+        spotDeviceService.vehicleOutOfSpot(deviceId);
+        return ResponseEntity.status(HttpStatus.FOUND).body("Vehicle out of spot");
     }
 }

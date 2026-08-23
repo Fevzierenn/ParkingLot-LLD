@@ -18,16 +18,18 @@ import java.util.List;
 
 @Service
 public class SpotDeviceService {
+    private final TicketService ticketService;
     Logger logger = LoggerFactory.getLogger(SpotDeviceService.class);
 
     private final SpotDeviceRepository spotDeviceRepository;
     private final SpotDeviceConfig spotDeviceConfig;
     private final EntityManager entityManager;
 
-    public SpotDeviceService(SpotDeviceRepository spotDeviceRepository, SpotDeviceConfig spotDeviceConfig, EntityManager entityManager) {
+    public SpotDeviceService(SpotDeviceRepository spotDeviceRepository, SpotDeviceConfig spotDeviceConfig, EntityManager entityManager, TicketService ticketService) {
         this.spotDeviceRepository = spotDeviceRepository;
         this.spotDeviceConfig = spotDeviceConfig;
         this.entityManager = entityManager;
+        this.ticketService = ticketService;
     }
 
     public SpotDevice findSpotDeviceById(Long deviceId) {
@@ -121,4 +123,17 @@ public class SpotDeviceService {
     }
 
 
+    @Transactional
+    public void vehicleOutOfSpot(Long deviceId) {
+
+        logger.info("Vehicle out detection from deviceId: {}", deviceId);
+        SpotDevice tempDevice =spotDeviceRepository.findById(deviceId).orElseThrow(
+                ()-> new SpotDeviceNotFoundException("SpotDevice not found with id: " + deviceId)
+        );
+        tempDevice.getSpot().setStatus(SpotStatus.AVAILABLE);
+        logger.info("Vehicle out of spot: {}", tempDevice.getSpot());
+        ticketService.markAsAvailable(tempDevice.getVehiclePlate());
+        resetDevice(tempDevice);
+
+    }
 }

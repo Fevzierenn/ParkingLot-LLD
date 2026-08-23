@@ -23,8 +23,10 @@ public interface ParkingSpotRepository extends JpaRepository<ParkingSpot, Long> 
 //    @QueryHints({
 //            @QueryHint(name = "jakarta.persistence.lock.timeout", value = "2000")
 //    })
-//    Optional<ParkingSpot> findFirstByAllowedTypeAndStatusOrderByFloorAscNearnessAsc(VehicleType allowedType, SpotStatus status);
 @Lock(LockModeType.PESSIMISTIC_WRITE)
+@QueryHints({
+        @QueryHint(name = "jakarta.persistence.lock.timeout", value = "-2")
+})
 @Query("""
     SELECT ps
     FROM spot ps
