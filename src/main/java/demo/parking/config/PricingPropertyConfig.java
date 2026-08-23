@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.math.BigDecimal;
+
 @ConfigurationProperties(prefix = "parking.pricing")
 @Getter
 @Setter
 public class PricingPropertyConfig {
         private PricingPolicy policy;
         private String description;
+        private BigDecimal hourlyRate;
 
 }

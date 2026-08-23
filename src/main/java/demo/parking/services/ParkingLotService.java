@@ -2,6 +2,7 @@ package demo.parking.services;
 
 import demo.parking.DTO.ResponseDTO.SpotDeviceResponse;
 import demo.parking.entities.*;
+import demo.parking.enums.TicketStatus;
 import demo.parking.events.TicketGeneratedEventPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class ParkingLotService {
 
         Vehicle vehicle = vehicleService.findVehicleByPlateNo(plateNo);
         SpotDevice device = spotDeviceService.findSpotDeviceById(deviceId);
-        Ticket ticket = ticketService.findTicketByVehiclePlateNo(vehicle.getPlateNo());
+        Ticket ticket = ticketService.findTicketByVehiclePlateNo(vehicle.getPlateNo(), TicketStatus.ACTIVE);
 
         ParkingSpot assignedSpot = ticket.getAssignedSpot();
         ParkingSpot actualSpot = device.getSpot();
