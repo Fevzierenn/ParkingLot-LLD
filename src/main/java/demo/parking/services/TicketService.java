@@ -66,6 +66,7 @@ public class TicketService {
       logger.info("Vehicle ticket found: " + activeTicket);
       return activeTicket;
     }
+
     public void markAsParked(
             Ticket ticket,
             Vehicle vehicle,
@@ -74,5 +75,6 @@ public class TicketService {
         ticket.setVehicle(vehicle);
         ticket.setActualSpot(actualSpot);
         ticket.setStatus(TicketStatus.PARKED);
+        ticket.setActualParkedTime(LocalDateTime.now());
     }
 }
