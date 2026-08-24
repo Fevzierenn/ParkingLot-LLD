@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class SpotDeviceService {
     private final TicketService ticketService;
-    Logger logger = LoggerFactory.getLogger(SpotDeviceService.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpotDeviceService.class);
 
     private final SpotDeviceRepository spotDeviceRepository;
     private final SpotDeviceConfig spotDeviceConfig;

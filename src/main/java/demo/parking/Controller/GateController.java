@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/gates")
 public class GateController {
-    Logger logger = LoggerFactory.getLogger(GateController.class);
+    private static final Logger logger = LoggerFactory.getLogger(GateController.class);
     private final GateService gateService;
 
     public GateController(GateService gateService) {

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VehicleService {
-    Logger log = LoggerFactory.getLogger(VehicleService.class);
+    private static final Logger log = LoggerFactory.getLogger(VehicleService.class);
 
     private final VehicleRepository vehicleRepository;
 
@@ -36,7 +36,7 @@ public class VehicleService {
                             .plateNo(plateNo)
                             .type(vehicleType)
                             .build();
-                    log.info("VehicleService.save(): Saving vehicle {}", vehicle);
+                    log.info("findOrCreate(): No vehicle found for plateNo {}, creating new vehicle {}", plateNo, vehicle);
                     return vehicleRepository.save(vehicle);
                 });
     }

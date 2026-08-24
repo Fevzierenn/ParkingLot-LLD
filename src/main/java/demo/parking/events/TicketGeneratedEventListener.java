@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TicketGeneratedEventListener implements ApplicationListener<TicketGeneratedEvent> {
-    Logger logger = LoggerFactory.getLogger(TicketGeneratedEventListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(TicketGeneratedEventListener.class);
     private final SpotDeviceService spotDeviceService;
 
     public TicketGeneratedEventListener(SpotDeviceService spotDeviceService) {

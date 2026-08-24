@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SpotAllocationService {
-    Logger logger = LoggerFactory.getLogger(SpotAllocationService.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpotAllocationService.class);
 
     private final ParkingSpotRepository parkingSpotRepository;
     private final SpotDeviceService spotDeviceService;

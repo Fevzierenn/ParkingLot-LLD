@@ -57,6 +57,8 @@ public class Ticket {
     private PricingPolicy pricingPolicy;
     private String pricingDescription;
     private boolean penaltyApplied;
+
+    @Column(length = 500)
     private String penaltyReason;
 
     @Override

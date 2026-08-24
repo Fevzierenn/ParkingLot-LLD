@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/vehicle-entry")
 public class VehicleEntryController {
-    Logger logger = LoggerFactory.getLogger(VehicleEntryController.class);
+    private static final Logger logger = LoggerFactory.getLogger(VehicleEntryController.class);
     private final VehicleEntryService vehicleEntryService;
     private final TicketMapper ticketMapper;
 

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VehicleEntryService {
-    Logger logger = LoggerFactory.getLogger(VehicleEntryService.class);
+    private static final Logger logger = LoggerFactory.getLogger(VehicleEntryService.class);
     private final TicketService ticketService;
     private final TicketGeneratedEventPublisher ticketGeneratedEventPublisher;
     private final SpotAllocationService spotAllocationService;

@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Component
 public class TicketGeneratedEventPublisher {
-    Logger log = LoggerFactory.getLogger(TicketGeneratedEventPublisher.class);
+    private static final Logger log = LoggerFactory.getLogger(TicketGeneratedEventPublisher.class);
     private final ApplicationEventPublisher publisher;
 
     public TicketGeneratedEventPublisher(ApplicationEventPublisher publisher) {
@@ -17,7 +17,7 @@ public class TicketGeneratedEventPublisher {
     }
 
     public void publishCustomTicketGeneratedPublisher(UUID vehicleId, UUID ticketId, Long deviceId) {
-        log.warn("TicketGeneratedEventPublisher Publishing custom event");
+        log.debug("Publishing TicketGeneratedEvent for ticketId: {}, vehicleId: {}, deviceId: {}", ticketId, vehicleId, deviceId);
         TicketGeneratedEvent ticketGeneratedEvent = new TicketGeneratedEvent(this, vehicleId, ticketId, deviceId);
         publisher.publishEvent(ticketGeneratedEvent);
     }

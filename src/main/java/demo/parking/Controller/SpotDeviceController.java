@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/spot-devices")
 public class SpotDeviceController {
     private final SpotDeviceService spotDeviceService;
-    Logger logger = LoggerFactory.getLogger(SpotDeviceController.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpotDeviceController.class);
     private final ParkingLotService parkingLotService;
 
     public SpotDeviceController(ParkingLotService parkingLotService, SpotDeviceService spotDeviceService) {

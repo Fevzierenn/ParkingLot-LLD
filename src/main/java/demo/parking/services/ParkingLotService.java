@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @Service
 public class ParkingLotService {
-    private final Logger logger = LoggerFactory.getLogger(ParkingLotService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ParkingLotService.class);
     private final SpotAllocationService spotAllocationService;
     private final TicketService ticketService;
     private final TicketGeneratedEventPublisher ticketGeneratedEventPublisher;
