@@ -56,9 +56,24 @@ public class GateService {
     }
 
     @Transactional
+    public Gate findExitGateByIdForUpdate(Long gateId) {
+        Gate gate = gateRepository.findByIdForUpdate(gateId).orElseThrow(
+                () -> new GateNotFoundException("Gate not found with id: " + gateId)
+        );
+        gate.assertUsableForExit();
+        return gate;
+    }
+
+    @Transactional
     public void openForEntry(Gate gate) {
         gate.openForEntry(LocalDateTime.now(clock));
         logger.info("Gate {} opened for entry.", gate.displayName());
+    }
+
+    @Transactional
+    public void openForExit(Gate gate) {
+        gate.openForExit(LocalDateTime.now(clock));
+        logger.info("Gate {} opened for exit.", gate.displayName());
     }
 
     @Transactional

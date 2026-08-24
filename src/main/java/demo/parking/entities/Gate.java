@@ -63,9 +63,32 @@ public class Gate {
         }
     }
 
+    public void assertUsableForExit() {
+        if (type != GateType.EXIT) {
+            throw new InvalidGateTypeException(
+                    "Gate " + displayName() + " is an " + type
+                            + " gate and cannot be used for exit.");
+        }
+        if (isOutOfService()) {
+            throw new GateNotAvailableException(
+                    "Gate " + displayName() + " is out of service.");
+        }
+        if (isOpen()) {
+            throw new GateBusyException(
+                    "Gate " + displayName() + " is already admitting a vehicle.");
+        }
+    }
+
     /** Raises the barrier. Only legal from a CLOSED, in-service entry gate. */
     public void openForEntry(LocalDateTime now) {
         assertUsableForEntry();
+        this.status = GateStatus.OPEN;
+        this.openedAt = now;
+    }
+
+    /** Raises the barrier. Only legal from a CLOSED, in-service entry gate. */
+    public void openForExit(LocalDateTime now) {
+        assertUsableForExit();
         this.status = GateStatus.OPEN;
         this.openedAt = now;
     }
